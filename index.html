@@ -1,0 +1,1877 @@
+<!DOCTYPE html>
+<html lang="es">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <meta content="Proyecto académico sobre el hotel Lopesan Costa Meloneras, en Gran Canaria." name="description"/>
+  <title>
+   Costa Meloneras · Proyecto académico
+  </title>
+  <style>
+   /* ============================================================
+   GUÍA RÁPIDA DEL CSS
+   CSS = apariencia visual de la página.
+   Aquí se cambian colores, tamaños, espacios y posiciones.
+   ============================================================ */
+
+/* 1. COLORES Y ESTILOS GENERALES */
+:root {
+  --arena: #f5f0e7;
+  --papel: #fffdf8;
+  --tinta: #243e37;
+  --oro: #8a693e;
+  --linea: #dcd4c5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 110px;
+}
+
+body {
+  margin: 0;
+  background: var(--arena);
+  color: var(--tinta);
+  font: 16px/1.7 Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-family: Georgia, serif;
+  font-weight: 400;
+  line-height: 1.12;
+}
+
+h1 {
+  font-size: clamp(48px, 8vw, 100px);
+  max-width: 800px;
+  margin-bottom: 24px;
+}
+
+h2 {
+  font-size: clamp(32px, 5vw, 54px);
+  margin-bottom: 24px;
+}
+
+h3 {
+  font-size: 26px;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+/* Estilo principal de los botones. */
+button,
+.boton {
+  cursor: pointer;
+  border: 1px solid var(--tinta);
+  background: var(--tinta);
+  color: white;
+  padding: 12px 22px;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+button:hover,
+.boton:hover {
+  background: #35564c;
+}
+
+/* Hace más visible el elemento seleccionado con el teclado. */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #be913e;
+  outline-offset: 4px;
+}
+
+.secundario {
+  background: transparent;
+  color: var(--tinta);
+}
+
+.secundario:hover {
+  background: #e4dece;
+}
+
+/* Limita el ancho del contenido y lo centra. */
+.contenedor {
+  width: min(1120px, 90%);
+  margin: auto;
+}
+
+section {
+  padding: 80px 0;
+}
+
+.etiqueta {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.nota {
+  font-size: 13px;
+  color: #5d665e;
+}
+
+/* Cualquier elemento con el atributo hidden se oculta. */
+[hidden] {
+  display: none !important;
+}
+
+/* Enlace de accesibilidad para saltar directamente al contenido. */
+.salto {
+  position: absolute;
+  top: -80px;
+}
+
+.salto:focus {
+  top: 8px;
+  z-index: 100;
+  background: white;
+  padding: 10px;
+}
+
+/* ============================================================
+   2. CABECERA Y PORTADA
+   ============================================================ */
+
+.aviso-academico {
+  text-align: center;
+  background: var(--tinta);
+  color: white;
+  font-size: 12px;
+  padding: 6px 12px;
+}
+
+.cabecera {
+  position: sticky;
+  top: 0;
+  background: var(--papel);
+  z-index: 10;
+  border-bottom: 1px solid var(--linea);
+}
+
+.barra {
+  min-height: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.marca {
+  text-decoration: none;
+  font: 24px Georgia, serif;
+}
+
+.marca small {
+  display: block;
+  font: 10px Arial, sans-serif;
+  letter-spacing: 3px;
+  margin-top: 6px;
+}
+
+nav {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 14px;
+}
+
+nav a:hover {
+  color: var(--oro);
+}
+
+/* En ordenador el botón de menú no hace falta. */
+#menu-boton {
+  display: none;
+}
+
+.portada {
+  position: relative;
+  min-height: 650px;
+  display: flex;
+  align-items: center;
+  background: #36594d;
+  isolation: isolate;
+  color: white;
+}
+
+.portada img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+/* Capa oscura encima de la foto para que el texto se lea mejor. */
+.portada:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(10, 31, 28, 0.78), rgba(10, 31, 28, 0.1));
+  z-index: -1;
+}
+
+.portada p:not(.etiqueta) {
+  max-width: 510px;
+  font-size: 18px;
+}
+
+.portada .boton {
+  background: var(--papel);
+  color: var(--tinta);
+  border-color: var(--papel);
+}
+
+.ubicacion {
+  margin-top: 44px;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+/* Crea dos columnas. En móvil se convierte en una sola. */
+.dos-columnas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.foto {
+  width: 100%;
+  aspect-ratio: 5/4;
+  object-fit: cover;
+  border-radius: 4px;
+  background: #ddd5c5;
+}
+
+.datos {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--linea);
+}
+
+.datos strong {
+  display: block;
+  font: 32px Georgia, serif;
+}
+
+.datos span {
+  font-size: 13px;
+}
+
+.cabecera-seccion {
+  max-width: 640px;
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 30px 0;
+}
+
+.filtros button[aria-pressed="true"] {
+  background: var(--tinta);
+  color: white;
+}
+
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.tarjeta {
+  padding: 30px;
+  background: var(--papel);
+  border: 1px solid var(--linea);
+  border-radius: 4px;
+}
+
+.numero {
+  color: var(--oro);
+  font-size: 13px;
+  display: block;
+  margin-bottom: 30px;
+}
+
+.tarjeta p {
+  margin-bottom: 0;
+  color: #57645e;
+}
+
+.fondo-claro {
+  background: var(--papel);
+}
+
+/* ============================================================
+   3. GALERÍA, FORMULARIO, PREGUNTAS Y PIE DE PÁGINA
+   ============================================================ */
+
+figure {
+  margin: 0;
+}
+
+.galeria-imagen {
+  width: 100%;
+  height: clamp(240px, 45vw, 520px);
+  object-fit: cover;
+  background: #ddd5c5;
+  border-radius: 4px;
+}
+
+.galeria-pie {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-top: 16px;
+}
+
+.controles {
+  display: flex;
+  gap: 10px;
+}
+
+.contacto {
+  align-items: start;
+}
+
+form {
+  background: var(--papel);
+  border: 1px solid var(--linea);
+  padding: 30px;
+  border-radius: 4px;
+}
+
+.campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #aaa99b;
+  background: white;
+  border-radius: 3px;
+  color: var(--tinta);
+}
+
+textarea {
+  resize: vertical;
+}
+
+.campo {
+  margin-bottom: 18px;
+}
+
+.check {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.check input {
+  width: auto;
+  margin-top: 6px;
+}
+
+#respuesta {
+  margin: 18px 0 0;
+}
+
+address {
+  font-style: normal;
+}
+
+details {
+  border-top: 1px solid var(--linea);
+  padding: 20px 0;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+details p {
+  margin: 12px 0 0;
+}
+
+footer {
+  background: var(--tinta);
+  color: white;
+  padding: 40px 0;
+}
+
+footer .contenedor {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+footer p {
+  font-size: 13px;
+  margin-bottom: 0;
+}
+
+footer button {
+  border-color: #dcd4c5;
+  margin-top: 12px;
+}
+
+/* Ventana emergente del aviso de cookies. */
+dialog {
+  width: min(520px, 92%);
+  border: 1px solid var(--linea);
+  border-radius: 8px;
+  padding: 32px;
+  background: var(--papel);
+  color: var(--tinta);
+  max-height: 90vh;
+  overflow: auto;
+}
+
+dialog::backdrop {
+  background: rgba(10, 25, 21, 0.6);
+}
+
+dialog h2 {
+  font-size: 32px;
+}
+
+.acciones-cookies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.acciones-cookies button {
+  flex: 1;
+}
+
+#preferencias {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid var(--linea);
+}
+
+/* ============================================================
+   4. CHAT FLOTANTE
+   Todo lo que empieza por .chat- pertenece al recuadro de ayuda.
+   ============================================================ */
+
+/* Botón redondo que abre y cierra el chat. */
+.chat-boton {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 13px 18px;
+  border-radius: 999px;
+  box-shadow: 0 8px 28px rgba(21, 42, 35, 0.22);
+}
+
+.chat-boton .chat-icono {
+  font-size: 19px;
+  line-height: 1;
+}
+
+/* Caja grande del chat. */
+.chat-panel {
+  position: fixed;
+  right: 24px;
+  bottom: 88px;
+  z-index: 29;
+  width: min(360px, calc(100vw - 32px));
+  height: min(520px, calc(100vh - 130px));
+  display: flex;
+  flex-direction: column;
+  background: var(--papel);
+  border: 1px solid var(--linea);
+  border-radius: 12px;
+  box-shadow: 0 18px 50px rgba(21, 42, 35, 0.25);
+  overflow: hidden;
+}
+
+/* Parte superior del chat. */
+.chat-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 18px;
+  background: var(--tinta);
+  color: white;
+}
+
+.chat-cabecera strong {
+  display: block;
+  font-family: Georgia, serif;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.chat-cabecera small {
+  display: block;
+  opacity: 0.82;
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+.chat-cerrar {
+  padding: 6px 10px;
+  border-color: rgba(255, 255, 255, 0.45);
+  background: transparent;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.chat-cerrar:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Zona donde aparecen los mensajes. */
+.chat-mensajes {
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px;
+  background: #f8f4ec;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chat-mensaje {
+  max-width: 84%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+/* Mensajes que escribe el asistente. */
+.chat-mensaje.bot {
+  align-self: flex-start;
+  background: white;
+  border: 1px solid var(--linea);
+  border-bottom-left-radius: 3px;
+}
+
+/* Mensajes que escribe el usuario. */
+.chat-mensaje.usuario {
+  align-self: flex-end;
+  background: var(--tinta);
+  color: white;
+  border-bottom-right-radius: 3px;
+}
+
+/* Campo de texto y botón Enviar. */
+.chat-form {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  background: var(--papel);
+  border: 0;
+  border-top: 1px solid var(--linea);
+  border-radius: 0;
+}
+
+.chat-form input {
+  min-width: 0;
+  margin: 0;
+}
+
+.chat-form button {
+  padding: 10px 14px;
+  flex: 0 0 auto;
+}
+
+.chat-nota {
+  padding: 0 14px 12px;
+  margin: 0;
+  background: var(--papel);
+  font-size: 11px;
+  color: #6a716c;
+}
+
+/* ============================================================
+   5. ADAPTACIÓN A MÓVILES
+   Estas reglas solo se aplican en pantallas de hasta 760 px.
+   ============================================================ */
+
+@media (max-width: 760px) {
+  section {
+    padding: 54px 0;
+  }
+
+  .barra {
+    min-height: 76px;
+    flex-wrap: wrap;
+    padding: 12px 0;
+    gap: 12px;
+  }
+
+  .marca {
+    font-size: 21px;
+  }
+
+  #menu-boton {
+    display: block;
+    padding: 8px 14px;
+  }
+
+  nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding-bottom: 8px;
+  }
+
+  nav.abierto {
+    display: flex;
+  }
+
+  nav a {
+    padding: 10px;
+  }
+
+  .dos-columnas {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .tarjetas {
+    grid-template-columns: 1fr;
+  }
+
+  .portada {
+    min-height: 580px;
+  }
+
+  .campos {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .datos {
+    gap: 24px;
+  }
+
+  .galeria-pie {
+    align-items: flex-start;
+  }
+
+  .controles button {
+    padding: 10px 14px;
+  }
+
+  form {
+    padding: 22px;
+  }
+
+  .chat-boton {
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .chat-panel {
+    right: 16px;
+    bottom: 78px;
+    height: min(500px, calc(100vh - 105px));
+  }
+
+  .chat-form {
+    padding: 10px;
+  }
+}
+
+/* Respeta a usuarios que prefieren menos animaciones. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+  
+/* 7. PLANIFICADOR DE RESERVAS Y MEJORAS */
+.reserva-layout{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:start}
+.reserva-aside{background:var(--tinta);color:white;padding:32px;border-radius:12px}
+.reserva-aside .nota{color:#d7dfd5}.reserva-aside h3{font-size:32px}
+.reserva-pasos{display:flex;gap:24px;flex-wrap:wrap;margin:25px 0;color:var(--oro);font-size:13px}
+.reserva-resumen{padding:20px 0;border-top:1px solid #668076;border-bottom:1px solid #668076;margin:22px 0}
+.reserva-resumen p{margin-bottom:10px}
+.reserva-aside .boton{background:var(--papel);color:var(--tinta);width:100%;text-align:center}
+.reserva-aside button{margin-top:12px;width:100%;border-color:#b9c9be}
+.reserva-error{color:#9d302a}.reserva-form button{width:100%}
+.banda{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:25px 0;border-bottom:1px solid var(--linea)}
+.banda span{font-size:14px}.banda strong{display:block;font-family:Georgia,serif;font-size:22px;font-weight:400}
+nav .boton{padding:9px 17px;color:white}
+.portada .secundario{margin-left:12px;background:transparent;color:white}
+.tarjeta{transition:transform .2s,box-shadow .2s}.tarjeta:hover{transform:translateY(-4px);box-shadow:0 10px 30px #243e3710}
+.reserva-movil{display:none}
+@media(max-width:760px){.reserva-layout{grid-template-columns:1fr}.reserva-aside{padding:24px}.portada .secundario{margin:12px 0 0}.reserva-movil{display:block;position:fixed;bottom:16px;left:16px;z-index:25;padding:12px 18px;border-radius:999px;box-shadow:0 8px 28px #152a3833}.chat-boton{padding:13px}.chat-boton span:last-child{display:none}footer{padding-bottom:100px}}
+@media(prefers-reduced-motion:reduce){.tarjeta{transition:none}}
+
+
+/* 8. ACABADO VISUAL: luz cálida, profundidad y movimiento suave. */
+:root{--arena:#f3efe6;--papel:#fffdf8;--tinta:#183f37;--oro:#947044}
+body{font-family:Arial,sans-serif}h1,h2{letter-spacing:-.045em}h2{line-height:1.08}
+.cabecera{background:rgba(255,253,248,.94);backdrop-filter:blur(18px)}
+.marca{letter-spacing:-.035em}.marca small{letter-spacing:.24em}
+.portada{overflow:hidden;min-height:calc(100svh - 115px);max-height:1000px;padding:100px 0 70px}
+.portada img{animation:respirar 22s ease-in-out infinite alternate}
+.portada:after{background:linear-gradient(90deg,rgba(9,33,29,.82),rgba(9,33,29,.13)),linear-gradient(0deg,rgba(9,33,29,.30),transparent 45%)}
+.portada h1{font-size:clamp(58px,8.5vw,116px);line-height:.99;text-shadow:0 3px 40px #122b2933}
+.portada .etiqueta{color:#eadac0}.boton,button{border-radius:6px;transition:background .2s,transform .2s}
+.boton:hover{transform:translateY(-2px)}.foto,.galeria-imagen{border-radius:14px}
+.foto{box-shadow:0 24px 65px #173b3215}.tarjeta{border-radius:12px}.numero{letter-spacing:.12em}
+.reserva-form{box-shadow:0 16px 60px #183f3709;border-radius:12px}.reserva-aside{background:linear-gradient(145deg,#254f44,#102e29);box-shadow:0 20px 60px #183f3720}
+.galeria-imagen{cursor:zoom-in}.galeria-pie{padding:4px 0}.filtros button{border-radius:999px}
+.editorial{background:var(--tinta);color:var(--papel);overflow:hidden}.editorial .dos-columnas{gap:60px}.editorial .etiqueta{color:#dec9a7}.editorial h2{font-size:clamp(40px,5.8vw,68px)}
+.editorial .foto{aspect-ratio:4/5}.editorial .boton{background:var(--papel);color:var(--tinta)}
+.editorial-linea{border-top:1px solid #698077;padding-top:22px;margin-top:32px;display:flex;gap:25px;flex-wrap:wrap;font-size:13px}
+.musica{position:fixed;bottom:24px;left:24px;z-index:24;background:rgba(255,253,248,.97);border:1px solid var(--linea);box-shadow:0 8px 30px #183f3719;border-radius:999px;padding:7px 14px 7px 7px;display:flex;align-items:center;gap:10px;backdrop-filter:blur(12px)}
+.musica button{padding:9px 13px;border-radius:999px;font-size:13px}.musica label{margin:0;font-size:11px}.musica input{width:65px;padding:0;accent-color:var(--tinta)}
+.musica-onda{display:flex;gap:3px;align-items:center;height:20px}.musica-onda i{display:block;width:3px;height:6px;background:var(--oro);border-radius:2px}
+.musica.activa .musica-onda i{animation:onda 1.2s ease-in-out infinite}.musica-onda i:nth-child(2){animation-delay:.2s}.musica-onda i:nth-child(3){animation-delay:.4s}
+.visor{width:min(1080px,94vw);padding:16px;background:#fffdf8}.visor img{width:100%;max-height:75vh;object-fit:contain;border-radius:8px}.visor-barra{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:12px}.visor-barra p{margin:0}.visor button{padding:6px 14px}
+.revelado{animation:aparecer .7s both}nav a[aria-current="location"]{text-decoration:underline;text-underline-offset:7px}
+@keyframes aparecer{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes respirar{from{transform:scale(1)}to{transform:scale(1.045)}}@keyframes onda{50%{height:18px}}
+@media(max-width:760px){.portada{min-height:680px;padding:75px 0}.portada h1{font-size:clamp(60px,15vw,90px)}.editorial .dos-columnas{gap:30px}.editorial .foto{aspect-ratio:5/4}.musica{left:16px;bottom:80px;padding-right:10px}.musica input{width:55px}.musica-onda{display:none}.visor{padding:12px}}
+@media(prefers-reduced-motion:reduce){.portada img,.revelado,.musica.activa .musica-onda i{animation:none}.boton,button{transition:none}}
+
+
+/* 9. AJUSTES DE IDIOMA, TEMA Y VOLUMEN */
+.barra{gap:16px}.barra nav{gap:18px}.ajustes-wrap{position:relative;flex-shrink:0}#ajustes-boton{font-size:13px;padding:10px 13px;background:transparent;color:var(--tinta);border-color:var(--linea)}
+.ajustes-panel{position:absolute;right:0;top:calc(100% + 14px);width:min(310px,calc(100vw - 32px));padding:24px;background:var(--papel);color:var(--tinta);border:1px solid var(--linea);box-shadow:0 20px 60px #0003;border-radius:14px;z-index:45;max-height:calc(100dvh - 160px);overflow:auto}
+.ajustes-panel .etiqueta{margin-bottom:18px}.ajustes-panel .nota{margin:12px 0}.ajustes-panel button{width:100%}.volumen-fila{display:flex;gap:15px;align-items:center}.volumen-fila input{padding:0;accent-color:#a7824c}.volumen-fila output{min-width:42px;font-size:13px}
+html[data-theme="dark"]{color-scheme:dark;--arena:#101c19;--papel:#192a25;--tinta:#edf2e9;--oro:#d7b884;--linea:#3e5148}
+html[data-theme="dark"] .cabecera{background:rgba(20,35,29,.96)}
+html[data-theme="dark"] .nota,html[data-theme="dark"] .tarjeta p{color:#c1cec5}
+html[data-theme="dark"] input,html[data-theme="dark"] select,html[data-theme="dark"] textarea{background:#101d18;color:#edf2e9;border-color:#637369}
+html[data-theme="dark"] button,html[data-theme="dark"] .boton{background:#d5bd94;color:#162a22;border-color:#d5bd94}
+html[data-theme="dark"] button:hover,html[data-theme="dark"] .boton:hover{background:#e6d1ae}
+html[data-theme="dark"] .secundario{background:transparent;color:#edf2e9;border-color:#76877d}
+html[data-theme="dark"] .filtros button[aria-pressed="true"]{background:#d5bd94;color:#162a22}
+html[data-theme="dark"] .portada .secundario{color:white;background:transparent}
+html[data-theme="dark"] .editorial,html[data-theme="dark"] footer,html[data-theme="dark"] .aviso-academico,html[data-theme="dark"] .chat-cabecera{background:#091813;color:#edf2e9}
+html[data-theme="dark"] .chat-mensajes{background:#111e19}html[data-theme="dark"] .chat-mensaje.bot{background:#21372d}html[data-theme="dark"] .chat-mensaje.usuario{background:#b49b73;color:#101c19}
+html[data-theme="dark"] .chat-nota{color:#c1cec5}html[data-theme="dark"] .visor{background:#192a25}html[data-theme="dark"] .reserva-error{color:#ffb4a7}
+html[data-theme="dark"] .salto:focus{background:#192a25;color:white}
+@media(max-width:980px) and (min-width:761px){.barra{flex-wrap:wrap;padding:14px 0}.barra nav{order:3;width:100%;justify-content:center}.ajustes-wrap{margin-left:auto}}
+@media(max-width:760px){.barra{gap:8px}.marca{margin-right:auto}.ajustes-wrap{order:2}.barra nav{order:3}#menu-boton{order:1}#ajustes-boton{font-size:12px;padding:9px}.ajustes-panel{top:calc(100% + 10px)}.marca{font-size:19px}}
+
+</style>
+ <link rel="stylesheet" href="app.css">
+</head>
+ <body>
+  <!--
+  GUÍA RÁPIDA DEL HTML
+  HTML = contenido y estructura de la página.
+  Piensa en él como el esqueleto de la web.
+  Cada bloque de abajo tiene un comentario que explica para qué sirve.
+-->
+  <a class="salto" href="#contenido">
+   Saltar al contenido
+  </a>
+  <!--
+  AVISO SUPERIOR: aclara que esta página es un proyecto académico.
+-->
+  <div class="aviso-academico">
+   Proyecto académico · Esta página no es la web oficial del hotel
+  </div>
+  <!--
+  CABECERA: contiene el nombre del hotel y el menú de navegación.
+-->
+  <header class="cabecera">
+   <div class="barra contenedor">
+    <a class="marca" href="#inicio">
+     Costa Meloneras
+     <small>
+      GRAN CANARIA · RESORT &amp; SPA
+     </small>
+    </a>
+    <button aria-controls="navegacion" aria-expanded="false" id="menu-boton" type="button">
+     Menú
+    </button>
+    <!-- MENÚ: cada enlace lleva a una sección usando su id. -->
+    <nav aria-label="Navegación principal" id="navegacion">
+     <a href="#hotel">
+      El hotel
+     </a>
+     <a href="#servicios">
+      Experiencias
+     </a>
+     <a href="#galeria">
+      Galería
+     </a>
+     <a href="#contacto">
+      Contacto
+     </a>
+     <a class="boton" href="#reservas">Reservar →</a>
+    </nav>
+    <div class="ajustes-wrap">
+     <button type="button" id="ajustes-boton" aria-expanded="false" aria-controls="ajustes-panel">⚙ Ajustes</button>
+     <div id="ajustes-panel" class="ajustes-panel" hidden>
+      <p class="etiqueta">A tu gusto</p>
+      <div class="campo"><label for="idioma-web">Idioma</label><select id="idioma-web"><option value="es">Español</option><option value="en">English</option></select></div>
+      <div class="campo"><label for="tema-web">Apariencia</label><select id="tema-web"><option value="light">Claro</option><option value="dark">Oscuro</option></select></div>
+      <label for="volumen-web">Volumen de la música</label><div class="volumen-fila"><input id="volumen-web" type="range" min="0" max="100" value="60"><output id="volumen-valor" for="volumen-web">60%</output></div>
+      <p id="sonido-estado" class="nota" role="status">La música se activa solo con el botón Activar sonido.</p>
+      <button type="button" id="activar-sonido">Activar sonido</button>
+     </div>
+    </div>
+   </div>
+  </header>
+  <!--
+  CONTENIDO PRINCIPAL: dentro de <main> están las secciones importantes de la página.
+-->
+  <main id="contenido">
+   <!--
+  SECCIÓN 1 - PORTADA: imagen grande, título principal y botón para bajar al hotel.
+-->
+   <section class="portada" id="inicio">
+    <img alt="Vista del entorno del Lopesan Costa Meloneras" fetchpriority="high" src="https://www.lopesan.com/documents/49789/1223809/VIEWS%2BAND%2BENVIRONMENT%2B%285%29.jpg/030bed90-5a21-8b8d-96bf-569c0d4793fc"/>
+    <div class="contenedor">
+     <p class="etiqueta">
+      Un rincón del Atlántico
+     </p>
+     <h1>
+      Tu pausa.
+      <br/>
+      Tu isla.
+      <br/>
+      Tu momento.
+     </h1>
+     <p>
+      Descubre Costa Meloneras: jardines, piscinas y arquitectura canaria junto al mar.
+     </p>
+     <a class="boton" href="#hotel">
+      Descubrir el hotel ↗️
+     </a>
+     <a class="boton secundario" href="#reservas">Planificar mi estancia →</a>
+     <div class="ubicacion">
+      MELONERAS · GRAN CANARIA · ESPAÑA
+     </div>
+    </div>
+   </section>
+   <!--
+  SECCIÓN 2 - EL HOTEL: descripción, datos principales e imagen de recepción.
+-->
+   <div class="contenedor banda"><span><strong>Frente al Atlántico</strong>Meloneras · Gran Canaria</span><span><strong>A tu ritmo</strong>Descanso, gastronomía y bienestar</span><span><strong>Planifica tu viaje</strong>Fechas y huéspedes en un solo lugar</span></div>
+   <section id="hotel">
+    <div class="contenedor dos-columnas">
+     <div>
+      <p class="etiqueta">
+       El hotel
+      </p>
+      <h2>
+       El encanto de Canarias, frente al océano.
+      </h2>
+      <p>
+       Lopesan Costa Meloneras Resort &amp; Spa se encuentra en el sur de Gran Canaria. Su arquitectura de inspiración colonial, los jardines y las piscinas invitan a disfrutar de la estancia con calma.
+      </p>
+      <p>
+       Un punto de partida para conocer Meloneras y el entorno de Maspalomas.
+      </p>
+      <div class="datos">
+       <div>
+        <strong>
+         5
+        </strong>
+        <span>
+         estrellas
+        </span>
+       </div>
+       <div>
+        <strong>
+         6
+        </strong>
+        <span>
+         restaurantes
+        </span>
+       </div>
+       <div>
+        <strong>
+         Om
+        </strong>
+        <span>
+         Spa &amp; bienestar
+        </span>
+       </div>
+      </div>
+     </div>
+     <img alt="Recepción del hotel Costa Meloneras" class="foto" loading="lazy" src="https://www.lopesan.com/documents/49789/1223809/RECEPTION%2B%283%29.jpg/186d9d81-849f-7008-3659-dccdb9ccc499"/>
+    </div>
+   </section>
+   <!--
+  SECCIÓN 3 - EXPERIENCIAS: tarjetas que se pueden filtrar con botones.
+-->
+   <section class="fondo-claro" id="servicios">
+    <div class="contenedor">
+     <div class="cabecera-seccion">
+      <p class="etiqueta">
+       A tu ritmo
+      </p>
+      <h2>
+       Una estancia,
+       <br/>
+       muchas formas de vivirla.
+      </h2>
+      <p>
+       Selecciona una categoría para explorar los servicios del hotel.
+      </p>
+     </div>
+     <div aria-label="Filtrar servicios" class="filtros" role="group">
+      <button aria-pressed="true" data-filtro="todos" type="button">
+       Todos
+      </button>
+      <button aria-pressed="false" class="secundario" data-filtro="descanso" type="button">
+       Descanso
+      </button>
+      <button aria-pressed="false" class="secundario" data-filtro="gastronomia" type="button">
+       Gastronomía
+      </button>
+      <button aria-pressed="false" class="secundario" data-filtro="bienestar" type="button">
+       Bienestar
+      </button>
+     </div>
+     <p class="nota" id="conteo" role="status">
+      Mostrando 3 servicios.
+     </p>
+     <div class="tarjetas">
+      <article class="tarjeta" data-categoria="descanso">
+       <span class="numero">
+        01 / DESCANSO
+       </span>
+       <h3>
+        Piscinas y jardines
+       </h3>
+       <p>
+        Espacios al aire libre y una piscina infinita que conecta visualmente con el Atlántico.
+       </p>
+      </article>
+      <article class="tarjeta" data-categoria="gastronomia">
+       <span class="numero">
+        02 / GASTRONOMÍA
+       </span>
+       <h3>
+        Sabores para descubrir
+       </h3>
+       <p>
+        Restaurantes y bares con propuestas para diferentes momentos de la estancia.
+       </p>
+      </article>
+      <article class="tarjeta" data-categoria="bienestar">
+       <span class="numero">
+        03 / BIENESTAR
+       </span>
+       <h3>
+        Un momento en Om Spa
+       </h3>
+       <p>
+        Un espacio de bienestar para completar la experiencia de descanso en el resort.
+       </p>
+      </article>
+     </div>
+    </div>
+   </section>
+   <!--
+  SECCIÓN 4 - GALERÍA: imagen principal y botones para pasar de una foto a otra.
+-->
+   <section id="galeria">
+    <div class="contenedor">
+     <p class="etiqueta">
+      Una mirada al resort
+     </p>
+     <h2>
+      Imagina estar aquí.
+     </h2>
+     <figure>
+      <img alt="Vista del entorno del hotel" class="galeria-imagen" id="foto-galeria" loading="lazy" src="https://www.lopesan.com/documents/49789/1223809/VIEWS%2BAND%2BENVIRONMENT%2B%285%29.jpg/030bed90-5a21-8b8d-96bf-569c0d4793fc"/>
+      <div class="galeria-pie">
+       <figcaption aria-live="polite" id="pie-galeria">
+        01 / 03 · El entorno del hotel
+       </figcaption>
+       <div class="controles">
+        <button aria-label="Foto anterior" id="anterior" type="button">
+         ←
+        </button>
+        <button aria-label="Foto siguiente" id="siguiente" type="button">
+         →
+        </button>
+       </div>
+      </div>
+     </figure>
+     <p class="nota">
+      Fotografías procedentes de la web oficial de Lopesan. Requieren conexión a Internet.
+     </p>
+    </div>
+   </section>
+   <!--
+  SECCIÓN 5 - CONTACTO: información del hotel y formulario de demostración.
+-->
+
+<!-- RESERVAS: planificador local. No cobra ni confirma disponibilidad. -->
+
+<!-- BLOQUE EDITORIAL: conecta la inspiración con la zona de reservas. -->
+<section class="editorial" id="escapada"><div class="contenedor dos-columnas">
+ <img class="foto" loading="lazy" alt="Interior de una estancia de Costa Meloneras" src="https://www.lopesan.com/documents/49789/1223809/24.%2BMSUIV%2B%281%29.jpg/5ebe2412-4f9d-a8a7-ffff-922aecee7f98">
+ <div><p class="etiqueta">El lujo de tener tiempo</p><h2>Hay viajes que se disfrutan sin mirar el reloj.</h2><p>Una mañana tranquila. Un paseo junto al océano. Una sobremesa que se alarga. Imagina tu estancia y elige cómo quieres vivirla.</p><a class="boton" href="#reservas">Diseña tu escapada →</a><div class="editorial-linea"><span>01 · Desconectar</span><span>02 · Descubrir</span><span>03 · Disfrutar</span></div></div>
+</div></section>
+<section id="reservas" class="fondo-claro">
+ <div class="contenedor">
+  <p class="etiqueta">Empieza a imaginar tu estancia</p>
+  <h2>Tu próxima pausa, a un paso.</h2>
+  <p class="cabecera-seccion">Elige tus fechas y prepara tu viaje. Consulta después las habitaciones, tarifas y disponibilidad en la web oficial.</p>
+  <div class="reserva-pasos" aria-label="Pasos para reservar"><span>01 · Elige tu estancia</span><span>02 · Revisa el resumen</span><span>03 · Reserva en Lopesan</span></div>
+  <div class="reserva-layout">
+   <form id="reserva-form" class="reserva-form">
+    <h3>Planifica tu visita</h3>
+    <div class="campos">
+     <div class="campo"><label for="entrada">Llegada *</label><input id="entrada" type="date" required></div>
+     <div class="campo"><label for="salida">Salida *</label><input id="salida" type="date" required></div>
+     <div class="campo"><label for="adultos">Adultos *</label><select id="adultos"><option value="1">1 adulto</option><option value="2" selected>2 adultos</option><option value="3">3 adultos</option><option value="4">4 adultos</option><option value="5">5 adultos</option><option value="6">6 adultos</option></select></div>
+     <div class="campo"><label for="menores">Menores</label><select id="menores"><option value="0">Sin menores</option><option value="1">1 menor</option><option value="2">2 menores</option><option value="3">3 menores</option><option value="4">4 menores</option></select></div>
+    </div>
+    <div id="edades" class="campos"></div>
+    <div class="campo"><label for="plan">¿Qué buscas en tu escapada?</label><select id="plan"><option value="Descanso junto al mar">Descanso junto al mar</option><option value="Viaje en familia">Viaje en familia</option><option value="Escapada en pareja">Escapada en pareja</option><option value="Gastronomía y bienestar">Gastronomía y bienestar</option></select></div>
+    <p class="nota">Las opciones de huéspedes sirven para planificar el viaje; la ocupación permitida de cada habitación se consulta en Lopesan.</p>
+    <p id="reserva-error" class="reserva-error" role="alert"></p>
+    <button type="submit">Preparar mi estancia →</button>
+    <p class="nota" style="margin-top:14px;margin-bottom:0">No se solicitan datos personales ni de pago.</p>
+   </form>
+   <aside class="reserva-aside" aria-label="Resumen de la estancia">
+    <p class="etiqueta">Costa Meloneras · Gran Canaria</p>
+    <h3>El océano te espera.</h3>
+    <p>Un lugar para bajar el ritmo y disfrutar del sur de la isla.</p>
+    <div id="reserva-resumen" class="reserva-resumen" aria-live="polite"><p>Selecciona las fechas y los huéspedes para ver aquí el resumen de tu viaje.</p></div>
+    <div id="reserva-acciones" hidden>
+     <a class="boton" href="https://www.lopesan.com/es/hoteles/espana/gran-canaria/meloneras/costa-meloneras/" target="_blank" rel="noopener noreferrer">Ir a reservas oficiales ↗</a>
+     <button type="button" id="descargar-estancia">Descargar mi resumen</button>
+     <p class="nota" style="margin-top:15px">Se abre la web oficial. Introduce allí tus fechas y huéspedes: este resumen no se transfiere automáticamente ni confirma una reserva.</p>
+    </div>
+    <p class="nota">Proyecto académico independiente. Precios, condiciones y disponibilidad se verifican con el hotel.</p>
+   </aside>
+  </div>
+ </div>
+</section>
+<section id="ubicacion">
+ <div class="contenedor dos-columnas">
+  <div><p class="etiqueta">Encuentra tu destino</p><h2>Nos vemos en Meloneras.</h2><p>Consulta la ubicación y prepara tu ruta antes de salir.</p><address>Calle Mar Mediterráneo, 1<br>35100 Meloneras, Gran Canaria</address></div>
+  <div class="tarjeta"><h3>Cómo llegar</h3><p>Abre el mapa para elegir tu punto de partida y consultar las indicaciones actualizadas.</p><a class="boton" style="margin-top:24px" href="https://www.google.com/maps/search/?api=1&amp;query=Lopesan+Costa+Meloneras+Calle+Mar+Mediterraneo+1" rel="noopener noreferrer" target="_blank">Ver ubicación en el mapa ↗</a><p class="nota" style="margin-top:18px">¿Tienes una consulta? <a href="tel:+34928128100">Llama al +34 928 128 100</a>.</p></div>
+ </div>
+</section>
+
+   <section class="fondo-claro" id="contacto">
+    <div class="contenedor dos-columnas contacto">
+     <div>
+      <p class="etiqueta">
+       Planifica tu visita
+      </p>
+      <h2>
+       El primer paso hacia tu próxima escapada.
+      </h2>
+      <p>
+       Practica con nuestro formulario interactivo. Es una demostración: no envía datos ni realiza reservas.
+      </p>
+      <address>
+       Calle Mar Mediterráneo, 1
+       <br/>
+       35100 Meloneras, Gran Canaria
+       <br/>
+       <a href="tel:+34928128100">
+        +34 928 128 100
+       </a>
+      </address>
+      <p style="margin-top:24px">
+       <a href="https://www.lopesan.com/es/hoteles/espana/gran-canaria/meloneras/costa-meloneras/" rel="noopener noreferrer" target="_blank">
+        Información y reservas en la web oficial ↗️
+       </a>
+      </p>
+     </div>
+     <!--
+  FORMULARIO: los campos sirven para practicar; JavaScript evita que se envíen datos.
+-->
+     <form id="formulario">
+      <div class="campos">
+       <div class="campo">
+        <label for="nombre">
+         Nombre *
+        </label>
+        <input autocomplete="given-name" id="nombre" maxlength="60" name="nombre" required=""/>
+       </div>
+       <div class="campo">
+        <label for="apellidos">
+         Apellidos *
+        </label>
+        <input autocomplete="family-name" id="apellidos" maxlength="100" name="apellidos" required=""/>
+       </div>
+      </div>
+      <div class="campo">
+       <label for="correo">
+        Correo electrónico *
+       </label>
+       <input autocomplete="email" id="correo" name="correo" required="" type="email"/>
+      </div>
+      <div class="campo">
+       <label for="interes">
+        ¿Qué te interesa?
+       </label>
+       <select id="interes" name="interes">
+        <option value="
+         Información general
+        ">
+         Información general
+        </option>
+        <option value="
+         Habitaciones
+        ">
+         Habitaciones
+        </option>
+        <option value="
+         Gastronomía
+        ">
+         Gastronomía
+        </option>
+        <option value="
+         Spa y bienestar
+        ">
+         Spa y bienestar
+        </option>
+       </select>
+      </div>
+      <div class="campo">
+       <label for="mensaje">
+        Tu consulta
+       </label>
+       <textarea id="mensaje" maxlength="1000" name="mensaje" rows="3"></textarea>
+      </div>
+      <label class="check campo">
+       <input required="" type="checkbox"/>
+       Entiendo que este formulario es una demostración académica.
+      </label>
+      <button type="submit">
+       Probar formulario ↗️
+      </button>
+      <p id="respuesta" role="status">
+      </p>
+     </form>
+    </div>
+   </section>
+   <!--
+  SECCIÓN 6 - PREGUNTAS FRECUENTES: usa <details> para abrir y cerrar cada respuesta.
+-->
+   <section>
+    <div class="contenedor">
+     <p class="etiqueta">
+      Antes de viajar
+     </p>
+     <h2>
+      Preguntas frecuentes
+     </h2>
+     <details>
+      <summary>
+       ¿Dónde está el hotel?
+      </summary>
+      <p>
+       En Meloneras, al sur de Gran Canaria, en la calle Mar Mediterráneo, 1.
+      </p>
+     </details>
+     <details>
+      <summary>
+       ¿Puedo reservar desde esta página?
+      </summary>
+      <p>
+       Puedes preparar tu estancia en <a href="#reservas">la zona de reservas</a> y descargar un resumen. Para consultar precios, disponibilidad y completar una reserva real, continúa en la web oficial de Lopesan.
+      </p>
+     </details>
+     <details>
+      <summary>
+       ¿Qué guarda esta página?
+      </summary>
+      <p>
+       Guarda tus preferencias de idioma, apariencia, volumen y aviso de cookies en este navegador. No guarda los datos de los formularios ni utiliza herramientas de análisis o publicidad.
+      </p>
+     </details>
+    </div>
+   </section>
+  <section id="mi-agenda" class="fondo-claro"><div class="contenedor">
+<p class="etiqueta">Mi estancia</p><h2>Tu agenda de experiencias.</h2>
+<p>Guarda las ideas que te apetece disfrutar. Esta lista no realiza reservas ni confirma disponibilidad.</p>
+<p class="nota">La agenda se guarda en este navegador. Puedes quitar cada experiencia cuando quieras.</p>
+<ul id="agenda-lista"></ul><p id="agenda-vacia">Todavía no has guardado experiencias. Explora las propuestas del hotel.</p>
+<p id="agenda-estado" role="status"></p><a class="boton" href="#servicios">Explorar experiencias</a>
+</div></section></main>
+  <!--
+  PIE DE PÁGINA: muestra la fuente, el botón de cookies y el año.
+-->
+  <a class="boton reserva-movil" href="#reservas">Reservar →</a>
+
+<!-- Música rítmica integrada, sin controles de reproducción. -->
+<dialog class="visor" id="visor-foto" aria-labelledby="visor-titulo"><div class="visor-barra"><p id="visor-titulo">Galería Costa Meloneras</p><button id="visor-cerrar" type="button" aria-label="Cerrar fotografía ampliada">Cerrar ×</button></div><img id="visor-imagen" alt=""></dialog>
+
+  <footer>
+   <div class="contenedor">
+    <div class="marca">
+     Costa Meloneras
+     <p>
+      Trabajo de Fundamentos de Marketing
+      <br/>
+      y Comportamiento del Consumidor.
+     </p>
+    </div>
+    <div>
+     <a href="https://www.lopesan.com/es/hoteles/espana/gran-canaria/meloneras/costa-meloneras/" rel="noopener noreferrer" target="_blank">
+      Fuente: web oficial de Lopesan ↗️
+     </a>
+     <br/>
+     <button id="abrir-cookies" type="button">
+      Preferencias de cookies
+     </button>
+     <p>
+      Proyecto educativo independiente ·
+      <span id="anio">
+      </span>
+     </p>
+    </div>
+   </div>
+  </footer>
+  <!-- Chat flotante de demostración: funciona de forma local, sin enviar datos. -->
+  <!--
+  CHAT FLOTANTE: este botón abre y cierra el recuadro de ayuda.
+-->
+  <button aria-controls="chat-panel" aria-expanded="false" aria-label="Chat de ayuda" class="chat-boton" id="chat-boton" type="button">
+   <span aria-hidden="true" class="chat-icono">
+    💬
+   </span>
+   <span>
+    ¿Necesitas ayuda?
+   </span>
+  </button>
+  <!--
+  PANEL DEL CHAT: contiene cabecera, mensajes, campo de texto y botón Enviar.
+-->
+  <aside aria-label="Chat de ayuda" class="chat-panel" hidden="" id="chat-panel">
+   <div class="chat-cabecera">
+    <div>
+     <strong>
+      Asistente Costa Meloneras
+     </strong>
+     <small>
+      Demostración académica
+     </small>
+    </div>
+    <button aria-label="Cerrar chat" class="chat-cerrar" id="chat-cerrar" type="button">
+     ×
+    </button>
+   </div>
+   <div aria-live="polite" aria-relevant="additions" class="chat-mensajes" id="chat-mensajes" role="log">
+    <p class="chat-mensaje bot">
+     ¡Hola! Puedo ayudarte con información básica sobre el hotel, ubicación, restaurantes, spa, piscinas o reservas.
+    </p>
+   </div>
+   <!-- CAMPO DEL CHAT: aquí escribe el usuario su pregunta. -->
+   <form class="chat-form" id="chat-form">
+    <label class="salto" for="chat-texto">
+     Escribe tu mensaje
+    </label>
+    <input autocomplete="off" id="chat-texto" maxlength="220" placeholder="Escribe tu consulta..." required="" type="text"/>
+    <button aria-label="Enviar mensaje" type="submit">
+     Enviar
+    </button>
+   </form>
+   <p class="chat-nota">
+    Chat simulado: no conecta con el hotel ni envía información a Internet.
+   </p>
+  </aside>
+  <!-- Aviso inicial accesible: se abre como ventana modal con JavaScript. -->
+  <!--
+  AVISO DE COOKIES: ventana emergente que recuerda la elección usando localStorage.
+-->
+  <dialog aria-describedby="texto-cookies" aria-labelledby="titulo-cookies" id="cookies">
+   <p class="etiqueta">
+    Tu privacidad
+   </p>
+   <h2 id="titulo-cookies">
+    Aviso de cookies
+   </h2>
+   <p id="texto-cookies">
+    Esta web académica no utiliza cookies de análisis ni publicidad. Guardamos tus preferencias de idioma, apariencia, volumen y aviso de cookies en el almacenamiento local del navegador.
+   </p>
+   <p class="nota">
+    Los botones simulan un panel de consentimiento. Aceptar no activa seguimiento. Las fotografías se cargan desde la web de Lopesan.
+   </p>
+   <div class="acciones-cookies">
+    <button id="aceptar" type="button">
+     Aceptar
+    </button>
+    <button id="rechazar" type="button">
+     Rechazar
+    </button>
+   </div>
+   <button aria-controls="preferencias" aria-expanded="false" class="secundario" id="configurar" style="margin-top:12px;width:100%" type="button">
+    Configurar
+   </button>
+   <div hidden="" id="preferencias">
+    <p>
+     <strong>
+      Preferencia local:
+     </strong>
+     recuerda tu elección.
+    </p>
+    <p>
+     No hay cookies opcionales que activar.
+    </p>
+    <button id="guardar" type="button">
+     Guardar preferencias
+    </button>
+   </div>
+  </dialog>
+  <!--
+  MENSAJE PARA NAVEGADORES SIN JAVASCRIPT.
+-->
+  <noscript>
+   <p class="contenedor">
+    Aviso de cookies: esta página no usa cookies de seguimiento. Activa JavaScript para usar el menú móvil, la galería, los filtros y el formulario de demostración.
+   </p>
+   <style>
+    @media(max-width:760px){nav{display:flex}#menu-boton{display:none}}#formulario button{display:none}
+   </style>
+  </noscript>
+  <!--
+  JAVASCRIPT: a partir de aquí está toda la interactividad de la página.
+-->
+  <script>
+'use strict';
+
+/* ============================================================
+   GUÍA RÁPIDA DEL JAVASCRIPT
+   JavaScript = comportamiento e interactividad.
+   Aquí hacemos funcionar el menú, filtros, galería, formulario,
+   cookies y chat.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. MENÚ MÓVIL
+   ------------------------------------------------------------ */
+
+// Guardamos en variables el botón "Menú" y la barra de navegación.
+const menuBoton = document.querySelector('#menu-boton');
+const navegacion = document.querySelector('#navegacion');
+
+// Cuando se pulsa el botón, mostramos u ocultamos el menú.
+menuBoton.addEventListener('click', () => {
+  const abierto = navegacion.classList.toggle('abierto');
+  menuBoton.setAttribute('aria-expanded', String(abierto));
+});
+
+// Si el usuario pulsa un enlace del menú, cerramos el menú móvil.
+navegacion.querySelectorAll('a').forEach((enlace) => {
+  enlace.addEventListener('click', () => {
+    navegacion.classList.remove('abierto');
+    menuBoton.setAttribute('aria-expanded', 'false');
+  });
+});
+
+/* ------------------------------------------------------------
+   2. FILTROS DE SERVICIOS
+   ------------------------------------------------------------ */
+
+// Buscamos todos los botones de filtro y todas las tarjetas.
+const filtros = document.querySelectorAll('[data-filtro]');
+const tarjetas = document.querySelectorAll('[data-categoria]');
+
+// Repetimos este código para cada botón de filtro.
+filtros.forEach((boton) => {
+  boton.addEventListener('click', () => {
+    // Marcamos como activo solo el botón que acabamos de pulsar.
+    filtros.forEach((filtro) => {
+      filtro.setAttribute('aria-pressed', String(filtro === boton));
+    });
+
+    let visibles = 0;
+
+    // Revisamos una a una las tarjetas para decidir si se muestran.
+    tarjetas.forEach((tarjeta) => {
+      const mostrarTodas = boton.dataset.filtro === 'todos';
+      const mismaCategoria = tarjeta.dataset.categoria === boton.dataset.filtro;
+
+      tarjeta.hidden = !mostrarTodas && !mismaCategoria;
+
+      if (!tarjeta.hidden) {
+        visibles++;
+      }
+    });
+
+    // Actualizamos el texto que indica cuántos servicios se ven.
+    document.querySelector('#conteo').textContent =
+      `Mostrando ${visibles} ${visibles === 1 ? 'servicio' : 'servicios'}.`;
+  });
+});
+
+/* ------------------------------------------------------------
+   3. GALERÍA DE FOTOS
+   ------------------------------------------------------------ */
+
+// Aquí están guardadas las tres imágenes de la galería.
+const fotos = [
+  {
+    src: 'https://www.lopesan.com/documents/49789/1223809/VIEWS%2BAND%2BENVIRONMENT%2B%285%29.jpg/030bed90-5a21-8b8d-96bf-569c0d4793fc',
+    texto: 'El entorno del hotel'
+  },
+  {
+    src: 'https://www.lopesan.com/documents/49789/1223809/RECEPTION%2B%283%29.jpg/186d9d81-849f-7008-3659-dccdb9ccc499',
+    texto: 'La recepción'
+  },
+  {
+    src: 'https://www.lopesan.com/documents/49789/1223809/24.%2BMSUIV%2B%281%29.jpg/5ebe2412-4f9d-a8a7-ffff-922aecee7f98',
+    texto: 'Una estancia en Costa Meloneras'
+  }
+];
+
+// Esta variable indica qué foto estamos viendo. 0 significa la primera.
+let indice = 0;
+
+// Esta función cambia la foto de la galería.
+function cambiarFoto(paso) {
+  indice = (indice + paso + fotos.length) % fotos.length;
+
+  const imagen = document.querySelector('#foto-galeria');
+  const pieGaleria = document.querySelector('#pie-galeria');
+
+  imagen.src = fotos[indice].src;
+  imagen.alt = fotos[indice].texto;
+  pieGaleria.textContent = `0${indice + 1} / 03 · ${fotos[indice].texto}`;
+}
+
+// Botón de foto anterior.
+document.querySelector('#anterior').addEventListener('click', () => {
+  cambiarFoto(-1);
+});
+
+// Botón de foto siguiente.
+document.querySelector('#siguiente').addEventListener('click', () => {
+  cambiarFoto(1);
+});
+
+/* ------------------------------------------------------------
+   4. FORMULARIO DE CONTACTO
+   ------------------------------------------------------------ */
+
+// El formulario es solo una demostración: evitamos que se envíe.
+document.querySelector('#formulario').addEventListener('submit', (evento) => {
+  evento.preventDefault();
+
+  const nombre = document.querySelector('#nombre').value.trim();
+  const respuesta = document.querySelector('#respuesta');
+
+  if (nombre) {
+    respuesta.textContent =
+      `Gracias, ${nombre}. Has completado correctamente la demostración. ` +
+      'No se ha enviado ningún dato al hotel.';
+  } else {
+    respuesta.textContent = 'Escribe tu nombre para completar la demostración.';
+  }
+});
+
+/* ------------------------------------------------------------
+   5. AVISO DE COOKIES
+   ------------------------------------------------------------ */
+
+// Guardamos los elementos principales del aviso en variables.
+const aviso = document.querySelector('#cookies');
+const clave = 'costa-meloneras-preferencia-v1';
+
+// Intentamos leer si el usuario ya tomó una decisión anteriormente.
+let eleccion = null;
+
+try {
+  eleccion = localStorage.getItem(clave);
+} catch (error) {
+  // Si el navegador bloquea el almacenamiento, la página sigue funcionando.
+}
+
+// Si no existe una decisión guardada, mostramos el aviso.
+if (!['aceptado', 'rechazado', 'solo-preferencia'].includes(eleccion)) {
+  aviso.showModal();
+}
+
+// Función reutilizable para guardar una elección y cerrar la ventana.
+function guardarEleccion(valor) {
+  try {
+    localStorage.setItem(clave, valor);
+  } catch (error) {
+    // Si no se puede guardar, simplemente volverá a aparecer en otra visita.
+  }
+
+  aviso.close();
+}
+
+// Botones principales del aviso.
+document.querySelector('#aceptar').addEventListener('click', () => {
+  guardarEleccion('aceptado');
+});
+
+document.querySelector('#rechazar').addEventListener('click', () => {
+  guardarEleccion('rechazado');
+});
+
+document.querySelector('#guardar').addEventListener('click', () => {
+  guardarEleccion('solo-preferencia');
+});
+
+// Botón "Configurar": abre o cierra las preferencias.
+document.querySelector('#configurar').addEventListener('click', (evento) => {
+  const panel = document.querySelector('#preferencias');
+
+  panel.hidden = !panel.hidden;
+  evento.currentTarget.setAttribute('aria-expanded', String(!panel.hidden));
+});
+
+// Permite volver a abrir el aviso desde el pie de página.
+document.querySelector('#abrir-cookies').addEventListener('click', () => {
+  aviso.showModal();
+});
+
+// Coloca automáticamente el año actual en el pie de página.
+document.querySelector('#anio').textContent = new Date().getFullYear();
+
+/* ------------------------------------------------------------
+   6. CHAT FLOTANTE
+   ------------------------------------------------------------
+   Este chat NO usa Internet ni inteligencia artificial.
+   Solo busca palabras clave y devuelve respuestas preparadas.
+   ------------------------------------------------------------ */
+
+// Guardamos cada pieza del chat en una variable para usarla después.
+const chatBoton = document.querySelector('#chat-boton');
+const chatPanel = document.querySelector('#chat-panel');
+const chatCerrar = document.querySelector('#chat-cerrar');
+const chatForm = document.querySelector('#chat-form');
+const chatTexto = document.querySelector('#chat-texto');
+const chatMensajes = document.querySelector('#chat-mensajes');
+
+// Esta función abre o cierra el recuadro del chat.
+function cambiarEstadoChat(abierto) {
+  chatPanel.hidden = !abierto;
+  chatBoton.setAttribute('aria-expanded', String(abierto));
+
+  const textoBoton = chatBoton.querySelector('span:last-child');
+  textoBoton.textContent = abierto ? 'Cerrar ayuda' : '¿Necesitas ayuda?';
+
+  // Si se abre el chat, colocamos el cursor directamente en el campo de texto.
+  if (abierto) {
+    chatTexto.focus();
+  } else { chatBoton.focus(); }
+}
+
+// Esta función crea un nuevo mensaje y lo añade al chat.
+// "tipo" puede ser "usuario" o "bot".
+function agregarMensaje(texto, tipo) {
+  const mensaje = document.createElement('p');
+
+  mensaje.className = `chat-mensaje ${tipo}`;
+  mensaje.textContent = texto;
+
+  chatMensajes.appendChild(mensaje);
+
+  // Bajamos automáticamente hasta el último mensaje.
+  chatMensajes.scrollTop = chatMensajes.scrollHeight;
+}
+
+// Esta es la parte más fácil de modificar si quieres añadir respuestas nuevas.
+function obtenerRespuesta(texto) {
+  // Convertimos el mensaje a minúsculas para que sea más fácil comparar palabras.
+  const consulta = texto.toLowerCase().replace(/hello|hi\b/g,'hola').replace(/location|where|address/g,'ubicacion').replace(/wellness|relax/g,'bienestar').replace(/restaurant|dining|food/g,'restaurante').replace(/pool|garden/g,'piscina').replace(/booking|book|price|availability|room/g,'reserva').replace(/phone|contact/g,'telefono').replace(/thank/g,'gracias');
+
+  // Cada bloque busca determinadas palabras y devuelve una respuesta.
+  if (/hola|buenas|buenos días|buenas tardes/.test(consulta)) {
+    return '¡Hola! ¿En qué puedo ayudarte sobre Costa Meloneras?';
+  }
+
+  if (/ubicación|ubicacion|dónde|donde|dirección|direccion/.test(consulta)) {
+    return 'El hotel está en Calle Mar Mediterráneo, 1, 35100 Meloneras, Gran Canaria.';
+  }
+
+  if (/spa|bienestar|relaj/.test(consulta)) {
+    return 'La web destaca Om Spa como espacio de bienestar para completar la experiencia de descanso.';
+  }
+
+  if (/restaurante|gastronom|comer|comida|bar/.test(consulta)) {
+    return 'El proyecto muestra la gastronomía como una de las experiencias del hotel y señala que cuenta con 6 restaurantes.';
+  }
+
+  if (/piscina|jardín|jardin|descanso/.test(consulta)) {
+    return 'Entre las experiencias se mencionan piscinas, jardines y una piscina infinita con vistas hacia el Atlántico.';
+  }
+
+  if (/reserva|reservar|precio|disponibilidad|habitación|habitacion/.test(consulta)) {
+    return 'En la zona de reservas puedes elegir fechas y huéspedes y descargar tu resumen. Para consultar disponibilidad, precios y completar la reserva, continúa en la web oficial de Lopesan.';
+  }
+
+  if (/contacto|teléfono|telefono|llamar/.test(consulta)) {
+    return 'En la sección de contacto aparece el teléfono +34 928 128 100.';
+  }
+
+  if (/gracias|perfecto|vale/.test(consulta)) {
+    return '¡De nada! Si quieres, puedes preguntarme otra cosa sobre el hotel.';
+  }
+
+  // Si no reconoce ninguna palabra, muestra esta respuesta general.
+  return 'Puedo responder consultas sencillas sobre ubicación, spa, restaurantes, piscinas, contacto o reservas. Prueba con alguno de esos temas.';
+}
+
+// Abrir o cerrar el chat al pulsar el botón flotante.
+chatBoton.addEventListener('click', () => {
+  cambiarEstadoChat(chatPanel.hidden);
+});
+
+// Cerrar el chat con la X.
+chatCerrar.addEventListener('click', () => {
+  cambiarEstadoChat(false);
+});
+
+// También se puede cerrar con la tecla Escape.
+document.addEventListener('keydown', (evento) => {
+  if (evento.key === 'Escape' && !chatPanel.hidden && !aviso.open) {
+    cambiarEstadoChat(false);
+  }
+});
+
+// Cuando el usuario pulsa "Enviar"...
+chatForm.addEventListener('submit', (evento) => {
+  evento.preventDefault();
+
+  const texto = chatTexto.value.trim();
+
+  // Si el campo está vacío, no hacemos nada.
+  if (!texto) {
+    return;
+  }
+
+  // 1. Mostramos el mensaje del usuario.
+  agregarMensaje(texto, 'usuario');
+
+  // 2. Limpiamos el campo de texto.
+  chatTexto.value = '';
+
+  // 3. Buscamos una respuesta y la mostramos como mensaje del bot.
+  const respuestaBot = obtenerRespuesta(texto);
+  agregarMensaje(respuestaBot, 'bot');
+
+  // 4. Dejamos el cursor listo para escribir otra pregunta.
+  chatTexto.focus();
+});
+
+/* 7. RESERVAS: fechas válidas, edades, resumen y descarga local. */
+const reservaForm=document.querySelector('#reserva-form');
+const entrada=document.querySelector('#entrada'), salida=document.querySelector('#salida');
+const adultos=document.querySelector('#adultos'), menores=document.querySelector('#menores');
+const resumen=document.querySelector('#reserva-resumen'), acciones=document.querySelector('#reserva-acciones');
+let resumenDescarga='';
+const fechaLocal=d=>[d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');
+const sumarDia=s=>{const d=new Date(s+'T12:00:00');d.setDate(d.getDate()+1);return fechaLocal(d)};
+entrada.min=fechaLocal(new Date());salida.min=sumarDia(entrada.min);
+function invalidarResumen(){acciones.hidden=true;resumenDescarga='';resumen.textContent=document.documentElement.lang==='en'?'Update the summary with your new preferences.':'Actualiza el resumen con tus nuevas preferencias.';document.querySelector('#reserva-error').textContent='';}
+entrada.addEventListener('change',()=>{salida.min=entrada.value?sumarDia(entrada.value):sumarDia(entrada.min);salida.setCustomValidity('');});
+menores.addEventListener('change',()=>{
+ const zona=document.querySelector('#edades');zona.replaceChildren();
+ for(let i=0;i<Number(menores.value);i++){
+  const div=document.createElement('div');div.className='campo';
+  const label=document.createElement('label');label.htmlFor='edad-'+i;label.textContent='Edad del menor '+(i+1)+' al llegar *';
+  const input=document.createElement('input');Object.assign(input,{id:'edad-'+i,type:'number',min:'0',max:'17',required:true});input.dataset.edad='';div.append(label,input);zona.append(div);
+ }
+});
+reservaForm.addEventListener('input',()=>{salida.setCustomValidity('');invalidarResumen()});
+reservaForm.addEventListener('change',invalidarResumen);
+reservaForm.addEventListener('submit',event=>{
+ event.preventDefault();
+ const error=document.querySelector('#reserva-error');
+ if(entrada.value<fechaLocal(new Date())||salida.value<=entrada.value){error.textContent='Elige una llegada desde hoy y una salida posterior a la llegada.';salida.focus();return;}
+ const dias=Math.round((Date.parse(salida.value+'T00:00:00Z')-Date.parse(entrada.value+'T00:00:00Z'))/86400000);
+ const formato=s=>new Intl.DateTimeFormat(document.documentElement.lang==='en'?'en-GB':'es-ES',{day:'numeric',month:'long',year:'numeric'}).format(new Date(s+'T12:00:00'));
+ const edades=[...document.querySelectorAll('[data-edad]')].map(el=>el.value);
+ const lineas=['Llegada: '+formato(entrada.value),'Salida: '+formato(salida.value),dias+' '+(dias===1?'noche':'noches'),adultos.value+' '+(adultos.value==='1'?'adulto':'adultos')+' · '+menores.value+' '+(menores.value==='1'?'menor':'menores')];
+ if(edades.length)lineas.push('Edades al llegar: '+edades.join(', ')+' años');
+ lineas.push('Tu escapada: '+document.querySelector('#plan').value);
+ if(document.documentElement.lang==='en'){
+ lineas.splice(0,lineas.length,'Arrival: '+formato(entrada.value),'Departure: '+formato(salida.value),dias+' '+(dias===1?'night':'nights'),adultos.value+' '+(adultos.value==='1'?'adult':'adults')+' · '+menores.value+' '+(menores.value==='1'?'child':'children'));
+ if(edades.length)lineas.push('Ages on arrival: '+edades.join(', '));lineas.push('Your escape: '+traducir(document.querySelector('#plan').value));
+}
+ resumen.replaceChildren();for(const linea of lineas){const p=document.createElement('p');p.textContent=linea;resumen.append(p);}
+ resumenDescarga='MI ESTANCIA · COSTA MELONERAS\n\n'+lineas.join('\n')+'\n\nPlanificación académica. No es una reserva confirmada.\nConsulta precios y disponibilidad en la web oficial de Lopesan.\nhttps://www.lopesan.com/es/hoteles/espana/gran-canaria/meloneras/costa-meloneras/';
+ if(document.documentElement.lang==='en')resumenDescarga='MY STAY · COSTA MELONERAS\n\n'+lineas.join('\n')+'\n\nAcademic trip planner. This is not a confirmed booking.\nCheck prices and availability on the official Lopesan website.\nhttps://www.lopesan.com/es/hoteles/espana/gran-canaria/meloneras/costa-meloneras/';
+ error.textContent='';acciones.hidden=false;
+});
+document.querySelector('#descargar-estancia').addEventListener('click',()=>{
+ if(!resumenDescarga)return;
+ const url=URL.createObjectURL(new Blob([resumenDescarga],{type:'text/plain;charset=utf-8'}));
+ const enlace=document.createElement('a');enlace.href=url;enlace.download='mi-estancia-costa-meloneras.txt';enlace.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+});
+document.querySelector('#chat-cerrar').addEventListener('click',()=>chatBoton.focus());
+document.querySelectorAll('img').forEach(img=>img.addEventListener('error',()=>{img.style.objectFit='contain';img.alt='Fotografía no disponible. '+img.alt;}));
+
+
+/* 8. MÚSICA RÍTMICA ORIGINAL: 112 BPM, bajo, batería y acordes. */
+let ritmoAudio,ritmoMaster,ritmoTimer,ritmoPaso=0,ritmoSiguiente=0,ritmoIniciando=false;
+const ritmoIntervalo=60/112/4;
+function tono(f,t,d,v,tipo='sine'){
+ const o=ritmoAudio.createOscillator(),g=ritmoAudio.createGain();o.type=tipo;o.frequency.value=f;
+ g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.008);g.gain.exponentialRampToValueAtTime(.0001,t+d);
+ o.connect(g);g.connect(ritmoMaster);o.start(t);o.stop(t+d+.01);o.onended=()=>{o.disconnect();g.disconnect()};
+}
+function bombo(t){const o=ritmoAudio.createOscillator(),g=ritmoAudio.createGain();o.frequency.setValueAtTime(145,t);o.frequency.exponentialRampToValueAtTime(42,t+.15);g.gain.setValueAtTime(.6,t);g.gain.exponentialRampToValueAtTime(.0001,t+.27);o.connect(g);g.connect(ritmoMaster);o.start(t);o.stop(t+.28);o.onended=()=>{o.disconnect();g.disconnect()};}
+function percusion(t,d,v,corte){const b=ritmoAudio.createBuffer(1,Math.ceil(ritmoAudio.sampleRate*d),ritmoAudio.sampleRate),a=b.getChannelData(0);for(let i=0;i<a.length;i++)a[i]=Math.random()*2-1;const s=ritmoAudio.createBufferSource(),f=ritmoAudio.createBiquadFilter(),g=ritmoAudio.createGain();s.buffer=b;f.type='highpass';f.frequency.value=corte;g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);s.connect(f);f.connect(g);g.connect(ritmoMaster);s.start(t);s.onended=()=>{s.disconnect();f.disconnect();g.disconnect()};}
+function programarRitmo(){if(ritmoAudio.state!=='running')return;if(ritmoSiguiente<ritmoAudio.currentTime-.2)ritmoSiguiente=ritmoAudio.currentTime+.03;while(ritmoSiguiente<ritmoAudio.currentTime+.15){
+ const p=ritmoPaso%16,compas=Math.floor(ritmoPaso/16)%4,t=ritmoSiguiente;
+ const raices=[110,87.31,130.81,98],r=raices[compas];
+ if(p%4===0)bombo(t);
+ if(p===4||p===12){percusion(t,.16,.16,1200);tono(180,t,.1,.075,'triangle');}
+ if(p%2===0)percusion(t,p%4===2?.12:.045,p%4===2?.085:.045,6500);
+ if([0,3,6,8,11,14].includes(p))tono(r*(p===14?2:1),t,.18,.18,'triangle');
+ if([2,6,10,14].includes(p)){[1,compas===1?1.2599:1.1892,1.4983].forEach(x=>tono(r*2*x,t,.28,.045,'triangle'));}
+ const melodias=[[440,523.25,659.25,523.25],[349.23,440,523.25,440],[523.25,659.25,783.99,659.25],[392,493.88,587.33,493.88]];
+ if([0,6,10,14].includes(p))tono(melodias[compas][[0,6,10,14].indexOf(p)],t,.35,.065);
+ ritmoPaso++;ritmoSiguiente+=ritmoIntervalo;
+}}
+function estadoSonido(texto){const el=document.querySelector('#sonido-estado');if(el)el.textContent=texto;}
+function iniciarRitmo(){
+ const API=window.AudioContext||window.webkitAudioContext;
+ if(!API){estadoSonido('Tu navegador no admite este audio.');return;}
+ try{
+  if(!ritmoAudio){ritmoAudio=new API();ritmoMaster=ritmoAudio.createGain();ritmoMaster.gain.value=Number(document.querySelector('#volumen-web').value)/100;const limitador=ritmoAudio.createDynamicsCompressor();ritmoMaster.connect(limitador);limitador.connect(ritmoAudio.destination);}
+  // resume se invoca dentro del gesto. Nunca se bloquean los siguientes intentos.
+  const arrancar=()=>{if(ritmoAudio.state!=='running')return;if(!ritmoTimer){ritmoSiguiente=ritmoAudio.currentTime+.05;programarRitmo();ritmoTimer=setInterval(programarRitmo,25);}estadoSonido(Number(document.querySelector('#volumen-web').value)===0?'Volumen a cero.':'Música en reproducción.');};
+  if(ritmoAudio.state==='running')arrancar();else{estadoSonido('Activando sonido…');ritmoAudio.resume().then(arrancar).catch(()=>estadoSonido('Pulsa Activar sonido para volver a intentarlo.'));}
+ }catch(error){estadoSonido('No se pudo iniciar el sonido en este navegador.');}
+}
+
+
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&ritmoAudio){ritmoSiguiente=ritmoAudio.currentTime+.05;}});
+/* GALERÍA AMPLIADA: teclado, Escape y foco conservado. */
+const fotoGaleria=document.querySelector('#foto-galeria'),visor=document.querySelector('#visor-foto');
+fotoGaleria.tabIndex=0;fotoGaleria.setAttribute('role','button');fotoGaleria.setAttribute('aria-label','Ampliar fotografía de la galería');fotoGaleria.setAttribute('aria-haspopup','dialog');
+function ampliarFoto(){const foto=document.querySelector('#visor-imagen');foto.src=fotoGaleria.src;foto.alt=fotoGaleria.alt;document.querySelector('#visor-titulo').textContent=fotoGaleria.alt;visor.showModal()}
+fotoGaleria.addEventListener('click',ampliarFoto);fotoGaleria.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();ampliarFoto()}});
+document.querySelector('#visor-cerrar').addEventListener('click',()=>visor.close());visor.addEventListener('close',()=>fotoGaleria.focus());
+/* EFECTOS: el contenido siempre permanece visible aunque JavaScript falle. */
+if('IntersectionObserver' in window){
+ const observador=new IntersectionObserver(items=>items.forEach(item=>{if(item.isIntersecting){item.target.classList.add('revelado');observador.unobserve(item.target)}}),{threshold:.12});
+ document.querySelectorAll('.cabecera-seccion,.dos-columnas,.reserva-layout').forEach(el=>observador.observe(el));
+ const secciones=new IntersectionObserver(items=>{const visible=items.filter(i=>i.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(visible){document.querySelectorAll('nav a').forEach(a=>{if(a.getAttribute('href')==='#'+visible.target.id)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current')})}},{rootMargin:'-15% 0px -55% 0px',threshold:0});
+ document.querySelectorAll('main section[id]').forEach(el=>secciones.observe(el));
+}
+
+
+/* 10. AJUSTES: traducción local y preferencias del visitante. */
+const traducciones=new Map([["⚙ Ajustes","⚙ Settings"],["A tu gusto","Make it yours"],["Idioma","Language"],["Apariencia","Appearance"],["Claro","Light"],["Oscuro","Dark"],["Volumen de la música","Music volume"],["Activar sonido","Enable sound"],["El sonido comienza al tocar la página.","Sound starts when you interact with the page."],["Música en reproducción.","Music is playing."],["Volumen a cero.","Volume is set to zero."],["Activando sonido…","Starting audio…"],["Tu navegador no admite este audio.","Your browser does not support this audio."],["Pulsa Activar sonido para volver a intentarlo.","Press Enable sound to try again."],["No se pudo iniciar el sonido en este navegador.","Audio could not start in this browser."],["Costa Meloneras · Proyecto académico","Costa Meloneras · Academic project"],["Saltar al contenido","Skip to content"],["Proyecto académico · Esta página no es la web oficial del hotel","Academic project · This is not the hotel’s official website"],["Menú","Menu"],["El hotel","The hotel"],["Experiencias","Experiences"],["Galería","Gallery"],["Contacto","Contact"],["Reservar →","Book →"],["Un rincón del Atlántico","A corner of the Atlantic"],["Tu pausa.","Your escape."],["Tu isla.","Your island."],["Tu momento.","Your moment."],["Descubre Costa Meloneras: jardines, piscinas y arquitectura canaria junto al mar.","Discover Costa Meloneras: gardens, pools and Canarian architecture by the sea."],["Descubrir el hotel ↗️","Discover the hotel ↗"],["Planificar mi estancia →","Plan my stay →"],["MELONERAS · GRAN CANARIA · ESPAÑA","MELONERAS · GRAN CANARIA · SPAIN"],["Frente al Atlántico","Facing the Atlantic"],["A tu ritmo","At your own pace"],["Descanso, gastronomía y bienestar","Relaxation, dining and wellbeing"],["Planifica tu viaje","Plan your trip"],["Fechas y huéspedes en un solo lugar","Dates and guests, all in one place"],["El encanto de Canarias, frente al océano.","Canarian charm, facing the ocean."],["Lopesan Costa Meloneras Resort & Spa se encuentra en el sur de Gran Canaria. Su arquitectura de inspiración colonial, los jardines y las piscinas invitan a disfrutar de la estancia con calma.","Lopesan Costa Meloneras Resort & Spa is in southern Gran Canaria. Its colonial-inspired architecture, gardens and pools invite you to slow down and enjoy your stay."],["Un punto de partida para conocer Meloneras y el entorno de Maspalomas.","A starting point for exploring Meloneras and the Maspalomas area."],["estrellas","stars"],["restaurantes","restaurants"],["Spa & bienestar","Spa & wellbeing"],["Una estancia,","One stay,"],["muchas formas de vivirla.","so many ways to enjoy it."],["Selecciona una categoría para explorar los servicios del hotel.","Choose a category to explore the hotel’s facilities."],["Todos","All"],["Descanso","Relaxation"],["Gastronomía","Dining"],["Bienestar","Wellbeing"],["01 / DESCANSO","01 / RELAXATION"],["Piscinas y jardines","Pools and gardens"],["Espacios al aire libre y una piscina infinita que conecta visualmente con el Atlántico.","Outdoor spaces and an infinity pool that visually merges with the Atlantic."],["02 / GASTRONOMÍA","02 / DINING"],["Sabores para descubrir","Flavours to discover"],["Restaurantes y bares con propuestas para diferentes momentos de la estancia.","Restaurants and bars for different moments throughout your stay."],["03 / BIENESTAR","03 / WELLBEING"],["Un momento en Om Spa","A moment at Om Spa"],["Un espacio de bienestar para completar la experiencia de descanso en el resort.","A wellbeing space to complement your relaxing resort experience."],["Una mirada al resort","A glimpse of the resort"],["Imagina estar aquí.","Imagine being here."],["El entorno del hotel","The hotel surroundings"],["La recepción","The reception"],["Una estancia en Costa Meloneras","A stay at Costa Meloneras"],["Fotografías procedentes de la web oficial de Lopesan. Requieren conexión a Internet.","Photos from the official Lopesan website. An internet connection is required."],["El lujo de tener tiempo","The luxury of time"],["Hay viajes que se disfrutan sin mirar el reloj.","Some escapes deserve no schedule."],["Una mañana tranquila. Un paseo junto al océano. Una sobremesa que se alarga. Imagina tu estancia y elige cómo quieres vivirla.","A quiet morning. A walk by the ocean. A long, leisurely lunch. Imagine your stay and choose how to enjoy it."],["Diseña tu escapada →","Design your escape →"],["01 · Desconectar","01 · Unwind"],["02 · Descubrir","02 · Discover"],["03 · Disfrutar","03 · Enjoy"],["Empieza a imaginar tu estancia","Start imagining your stay"],["Tu próxima pausa, a un paso.","Your next escape starts here."],["Elige tus fechas y prepara tu viaje. Consulta después las habitaciones, tarifas y disponibilidad en la web oficial.","Choose your dates and plan your trip. Then check rooms, rates and availability on the official website."],["01 · Elige tu estancia","01 · Plan your stay"],["02 · Revisa el resumen","02 · Review your summary"],["03 · Reserva en Lopesan","03 · Book with Lopesan"],["Planifica tu visita","Plan your visit"],["Llegada *","Arrival *"],["Salida *","Departure *"],["Adultos *","Adults *"],["Menores","Children"],["Sin menores","No children"],["¿Qué buscas en tu escapada?","What are you looking for?"],["Descanso junto al mar","Relaxation by the sea"],["Viaje en familia","Family trip"],["Escapada en pareja","Couples’ getaway"],["Gastronomía y bienestar","Dining and wellbeing"],["Las opciones de huéspedes sirven para planificar el viaje; la ocupación permitida de cada habitación se consulta en Lopesan.","Guest options help you plan your trip; check permitted room occupancy with Lopesan."],["Preparar mi estancia →","Prepare my stay →"],["No se solicitan datos personales ni de pago.","No personal or payment details are requested."],["El océano te espera.","The ocean awaits."],["Un lugar para bajar el ritmo y disfrutar del sur de la isla.","A place to slow down and enjoy the south of the island."],["Selecciona las fechas y los huéspedes para ver aquí el resumen de tu viaje.","Select your dates and guests to see your trip summary here."],["Ir a reservas oficiales ↗","Go to official booking ↗"],["Descargar mi resumen","Download my summary"],["Se abre la web oficial. Introduce allí tus fechas y huéspedes: este resumen no se transfiere automáticamente ni confirma una reserva.","The official website opens in a new tab. Enter your dates and guests there: this summary is not transferred automatically and does not confirm a booking."],["Proyecto académico independiente. Precios, condiciones y disponibilidad se verifican con el hotel.","Independent academic project. Confirm rates, terms and availability with the hotel."],["Encuentra tu destino","Find your destination"],["Nos vemos en Meloneras.","See you in Meloneras."],["Consulta la ubicación y prepara tu ruta antes de salir.","Check the location and plan your route before you leave."],["Cómo llegar","Getting here"],["Abre el mapa para elegir tu punto de partida y consultar las indicaciones actualizadas.","Open the map to choose your starting point and get current directions."],["Ver ubicación en el mapa ↗","View location on the map ↗"],["¿Tienes una consulta?","Have a question?"],["Llama al +34 928 128 100","Call +34 928 128 100"],["El primer paso hacia tu próxima escapada.","The first step towards your next escape."],["Practica con nuestro formulario interactivo. Es una demostración: no envía datos ni realiza reservas.","Try our interactive form. This is a demonstration: it does not send data or make bookings."],["Información y reservas en la web oficial ↗️","Information and bookings on the official website ↗"],["Nombre *","First name *"],["Apellidos *","Last name *"],["Correo electrónico *","Email address *"],["¿Qué te interesa?","What interests you?"],["Información general","General information"],["Habitaciones","Rooms"],["Spa y bienestar","Spa and wellbeing"],["Tu consulta","Your question"],["Entiendo que este formulario es una demostración académica.","I understand that this form is an academic demonstration."],["Probar formulario ↗️","Try the form ↗"],["Antes de viajar","Before you travel"],["Preguntas frecuentes","Frequently asked questions"],["¿Dónde está el hotel?","Where is the hotel?"],["En Meloneras, al sur de Gran Canaria, en la calle Mar Mediterráneo, 1.","In Meloneras, southern Gran Canaria, at Calle Mar Mediterráneo, 1."],["¿Puedo reservar desde esta página?","Can I book through this page?"],["Puedes preparar tu estancia en","You can plan your stay in"],["la zona de reservas","the booking section"],["y descargar un resumen. Para consultar precios, disponibilidad y completar una reserva real, continúa en la web oficial de Lopesan.","and download a summary. To check prices and availability and complete a real booking, continue on the official Lopesan website."],["¿Qué guarda esta página?","What does this page store?"],["Guarda tus preferencias de idioma, apariencia, volumen y aviso de cookies en este navegador. No guarda los datos de los formularios ni utiliza herramientas de análisis o publicidad.","It stores your language, appearance, volume and cookie-notice preferences in this browser. It does not store form data or use analytics or advertising tools."],["Galería Costa Meloneras","Costa Meloneras gallery"],["Cerrar ×","Close ×"],["Trabajo de Fundamentos de Marketing","Fundamentals of Marketing"],["y Comportamiento del Consumidor.","and Consumer Behaviour project."],["Fuente: web oficial de Lopesan ↗️","Source: official Lopesan website ↗"],["Preferencias de cookies","Cookie preferences"],["Proyecto educativo independiente ·","Independent educational project ·"],["¿Necesitas ayuda?","Need help?"],["Cerrar ayuda","Close help"],["Asistente Costa Meloneras","Costa Meloneras assistant"],["Demostración académica","Academic demonstration"],["¡Hola! Puedo ayudarte con información básica sobre el hotel, ubicación, restaurantes, spa, piscinas o reservas.","Hi! I can help with basic information about the hotel, location, restaurants, spa, pools or bookings."],["Escribe tu mensaje","Write your message"],["Escribe tu consulta...","Type your question..."],["Enviar","Send"],["Chat simulado: no conecta con el hotel ni envía información a Internet.","Simulated chat: it does not connect to the hotel or send information online."],["Tu privacidad","Your privacy"],["Aviso de cookies","Cookie notice"],["Esta web académica no utiliza cookies de análisis ni publicidad. Guardamos tus preferencias de idioma, apariencia, volumen y aviso de cookies en el almacenamiento local del navegador.","This academic website does not use analytics or advertising cookies. Your language, appearance, volume and cookie-notice preferences are stored locally in your browser."],["Los botones simulan un panel de consentimiento. Aceptar no activa seguimiento. Las fotografías se cargan desde la web de Lopesan.","These buttons simulate a consent panel. Accepting does not enable tracking. Photos load from the Lopesan website."],["Aceptar","Accept"],["Rechazar","Reject"],["Configurar","Configure"],["Preferencia local:","Local preference:"],["recuerda tu elección.","remembers your choice."],["No hay cookies opcionales que activar.","There are no optional cookies to enable."],["Guardar preferencias","Save preferences"],["Navegación principal","Main navigation"],["Filtrar servicios","Filter facilities"],["Foto anterior","Previous photo"],["Foto siguiente","Next photo"],["Pasos para reservar","Booking steps"],["Resumen de la estancia","Stay summary"],["Chat de ayuda","Help chat"],["Cerrar chat","Close chat"],["Enviar mensaje","Send message"],["Cerrar fotografía ampliada","Close enlarged photo"],["Ampliar fotografía de la galería","Enlarge gallery photo"],["Vista del entorno del Lopesan Costa Meloneras","View of the Lopesan Costa Meloneras surroundings"],["Recepción del hotel Costa Meloneras","Costa Meloneras hotel reception"],["Vista del entorno del hotel","View of the hotel surroundings"],["Interior de una estancia de Costa Meloneras","Interior of a Costa Meloneras room"],["Actualiza el resumen con tus nuevas preferencias.","Update the summary with your new preferences."],["Elige una llegada desde hoy y una salida posterior a la llegada.","Choose an arrival date from today onwards and a later departure date."],["Escribe tu nombre para completar la demostración.","Enter your name to complete the demonstration."],["¡Hola! ¿En qué puedo ayudarte sobre Costa Meloneras?","Hi! How can I help you with Costa Meloneras?"],["El hotel está en Calle Mar Mediterráneo, 1, 35100 Meloneras, Gran Canaria.","The hotel is at Calle Mar Mediterráneo, 1, 35100 Meloneras, Gran Canaria."],["La web destaca Om Spa como espacio de bienestar para completar la experiencia de descanso.","The website highlights Om Spa as a wellbeing space to complement your stay."],["El proyecto muestra la gastronomía como una de las experiencias del hotel y señala que cuenta con 6 restaurantes.","The project presents dining as one of the hotel’s experiences and lists six restaurants."],["Entre las experiencias se mencionan piscinas, jardines y una piscina infinita con vistas hacia el Atlántico.","The experiences include pools, gardens and an infinity pool facing the Atlantic."],["En la zona de reservas puedes elegir fechas y huéspedes y descargar tu resumen. Para consultar disponibilidad, precios y completar la reserva, continúa en la web oficial de Lopesan.","In the booking section you can choose dates and guests and download your summary. For availability, prices and booking, continue on the official Lopesan website."],["En la sección de contacto aparece el teléfono +34 928 128 100.","The contact section lists the phone number +34 928 128 100."],["¡De nada! Si quieres, puedes preguntarme otra cosa sobre el hotel.","You’re welcome! You can ask me another question about the hotel."],["Puedo responder consultas sencillas sobre ubicación, spa, restaurantes, piscinas, contacto o reservas. Prueba con alguno de esos temas.","I can answer simple questions about the location, spa, restaurants, pools, contact details or bookings. Try one of these topics."]]);
+const originales=new WeakMap(),atributosOriginales=new WeakMap();
+let idiomaActual='es';
+function traducir(s){
+ const key=s.trim().replace(/\s+/g,' ');if(traducciones.has(key))return traducciones.get(key);
+ let m;if((m=key.match(/^(\d+) adulto(s)?$/)))return m[1]+' '+(m[1]==='1'?'adult':'adults');
+ if((m=key.match(/^(\d+) menor(es)?$/)))return m[1]+' '+(m[1]==='1'?'child':'children');
+ if((m=key.match(/^Mostrando (\d+) servicio(s)?\.$/)))return 'Showing '+m[1]+' '+(m[1]==='1'?'facility.':'facilities.');
+ if((m=key.match(/^(\d+ \/ \d+ · )(.+)$/)))return m[1]+traducir(m[2]);
+ if((m=key.match(/^Edad del menor (\d+) al llegar \*$/)))return 'Child '+m[1]+' age on arrival *';
+ if((m=key.match(/^Gracias, (.+)\. Has completado correctamente la demostración\. No se ha enviado ningún dato al hotel\.$/)))return 'Thank you, '+m[1]+'. You have completed the demonstration. No data has been sent to the hotel.';
+ return s;
+}
+function traducirPagina(){
+ observadorIdioma.disconnect();
+ const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let node;
+ while(node=walker.nextNode()){
+  if(!node.nodeValue.trim()||node.parentElement.closest('script,style,noscript,.chat-mensaje.usuario,#visor-titulo'))continue;
+  let registro=originales.get(node);if(!registro||node.nodeValue!==registro.ultimo)registro={es:node.nodeValue};
+  const valor=idiomaActual==='en'?traducir(registro.es):registro.es;if(node.nodeValue!==valor)node.nodeValue=valor;registro.ultimo=valor;originales.set(node,registro);
+ }
+ document.querySelectorAll('[aria-label],[placeholder],[alt]').forEach(el=>{
+  let registros=atributosOriginales.get(el)||{};
+  for(const attr of ['aria-label','placeholder','alt'])if(el.hasAttribute(attr)){const actual=el.getAttribute(attr);let r=registros[attr];if(!r||actual!==r.ultimo)r={es:actual};const valor=idiomaActual==='en'?traducir(r.es):r.es;if(valor!==actual)el.setAttribute(attr,valor);r.ultimo=valor;registros[attr]=r;}
+  atributosOriginales.set(el,registros);
+ });
+ document.documentElement.lang=idiomaActual;document.title=idiomaActual==='en'?'Costa Meloneras · Academic project':'Costa Meloneras · Proyecto académico';
+ observadorIdioma.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['aria-label','alt','placeholder']});
+}
+const observadorIdioma=new MutationObserver(traducirPagina);
+const ajustesBoton=document.querySelector('#ajustes-boton'),ajustesPanel=document.querySelector('#ajustes-panel');
+function cerrarAjustes(){ajustesPanel.hidden=true;ajustesBoton.setAttribute('aria-expanded','false')}
+ajustesBoton.addEventListener('click',()=>{const abrir=ajustesPanel.hidden;ajustesPanel.hidden=!abrir;ajustesBoton.setAttribute('aria-expanded',String(abrir));});
+document.addEventListener('click',e=>{if(!e.target.closest('.ajustes-wrap'))cerrarAjustes()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!ajustesPanel.hidden){cerrarAjustes();ajustesBoton.focus()}});
+const idiomaSelect=document.querySelector('#idioma-web'),temaSelect=document.querySelector('#tema-web'),volumenSelect=document.querySelector('#volumen-web');
+function guardarAjustes(){try{localStorage.setItem('costa-ajustes-v1',JSON.stringify({idioma:idiomaActual,tema:temaSelect.value,volumen:Number(volumenSelect.value)}))}catch(e){}}
+function aplicarVolumen(){document.querySelector('#volumen-valor').value=volumenSelect.value+'%';if(ritmoMaster)ritmoMaster.gain.setTargetAtTime(Number(volumenSelect.value)/100,ritmoAudio.currentTime,.05);}
+idiomaSelect.addEventListener('change',()=>{idiomaActual=idiomaSelect.value;traducirPagina();if(!acciones.hidden)reservaForm.requestSubmit();guardarAjustes()});
+temaSelect.addEventListener('change',()=>{document.documentElement.dataset.theme=temaSelect.value;guardarAjustes()});
+volumenSelect.addEventListener('input',()=>{aplicarVolumen();guardarAjustes()});
+document.querySelector('#activar-sonido').addEventListener('click',()=>{
+ if(ritmoAudio && ritmoAudio.state==='running'){
+ clearInterval(ritmoTimer);ritmoTimer=null;ritmoAudio.suspend();estadoSonido('Música en pausa.');
+ document.querySelector('#activar-sonido').textContent='Activar sonido';
+ }else{iniciarRitmo();document.querySelector('#activar-sonido').textContent='Pausar sonido';}
+});
+try{const saved=JSON.parse(localStorage.getItem('costa-ajustes-v1')||'{}');if(['es','en'].includes(saved.idioma))idiomaSelect.value=idiomaActual=saved.idioma;if(['light','dark'].includes(saved.tema))temaSelect.value=saved.tema;if(typeof saved.volumen==='number'&&saved.volumen>=0&&saved.volumen<=100)volumenSelect.value=saved.volumen;}catch(e){}
+document.documentElement.dataset.theme=temaSelect.value;aplicarVolumen();traducirPagina();
+
+  </script>
+ <nav class="app-nav" aria-label="Navegación de la web-app">
+<a href="#inicio">Inicio</a><a href="#servicios">Explorar</a><a href="#reservas">Planificar</a><a href="#mi-agenda">Mi agenda</a><a href="#ubicacion">Mapa</a>
+</nav><script src="app.js"></script></body>
+</html>

@@ -1,0 +1,23 @@
+
+/* Adaptación por tareas para móvil, tableta y ordenador. */
+html{scroll-padding-top:130px}body{padding-bottom:90px}main{overflow-wrap:anywhere}
+.app-nav{position:fixed;bottom:0;left:0;right:0;z-index:26;display:flex;justify-content:center;gap:0;background:var(--papel);border-top:1px solid var(--linea);padding:8px 12px calc(8px + env(safe-area-inset-bottom));box-shadow:0 -6px 24px #0001}
+.app-nav a{flex:1;max-width:160px;min-height:48px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:14px;border-radius:6px}
+.app-nav a[aria-current]{background:var(--tinta);color:var(--papel);font-weight:bold}
+.chat-boton{bottom:100px}.chat-panel{bottom:165px;height:min(520px,calc(100dvh - 185px))}.reserva-movil{display:none!important}
+#agenda-lista{list-style:none;padding:0;display:grid;gap:12px}#agenda-lista li{display:flex;align-items:center;justify-content:space-between;gap:16px;border:1px solid var(--linea);padding:18px;border-radius:8px}
+.guardar-experiencia{margin-top:22px;min-height:44px}button,input,select{min-height:44px}
+html[data-theme="dark"] .app-nav a[aria-current]{background:#d5bd94;color:#162a22}
+html[data-theme="dark"] .reserva-aside{color:#edf2e9}
+@media(max-width:1100px){.barra{flex-wrap:wrap}.barra #menu-boton{display:block}.barra .marca{margin-right:auto}.barra #navegacion{display:none;order:4;width:100%;flex-direction:column;align-items:stretch;gap:0}.barra #navegacion.abierto{display:flex}.barra #navegacion a{padding:12px}.dos-columnas,.reserva-layout{grid-template-columns:1fr;gap:30px}.tarjetas{grid-template-columns:repeat(2,minmax(0,1fr))}.portada{min-height:580px}.ajustes-panel{right:0}}
+@media(max-width:600px){.barra{gap:8px}.marca{font-size:19px}.marca small{font-size:8px}.tarjetas{grid-template-columns:1fr}.portada{min-height:520px;padding:60px 0}.portada h1{font-size:clamp(44px,14vw,72px)}.app-nav a{font-size:12px}.datos{flex-wrap:wrap}.galeria-pie{flex-wrap:wrap}.chat-boton{bottom:95px}.chat-panel{bottom:155px}.ajustes-wrap{position:static}.ajustes-panel{right:4%;width:92%;top:100%;max-height:65dvh}}
+@media(prefers-reduced-motion:reduce){.tarjeta:hover,.boton:hover{transform:none}}
+
+/* Corrección verificada en móvil: evitar heredar el menú vertical. */
+.app-nav{flex-direction:row;align-items:center;flex-wrap:nowrap}
+
+
+/* En horizontal se reserva altura para todos los controles de ayuda. */
+.chat-mensajes{min-height:0}.chat-cabecera,.chat-form,.chat-nota{flex-shrink:0}
+@media(max-height:500px){.chat-panel{top:8px;bottom:78px;height:auto;z-index:50}.chat-cabecera{padding:8px 14px}.chat-nota{padding-bottom:6px}.ajustes-panel{position:fixed;top:85px;bottom:78px;right:16px;max-height:none}}
+
