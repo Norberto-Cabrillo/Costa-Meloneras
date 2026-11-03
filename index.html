@@ -1334,6 +1334,11 @@ html[data-theme="dark"] .salto:focus{background:#192a25;color:white}
     </p>
    </div>
    <!-- CAMPO DEL CHAT: aquí escribe el usuario su pregunta. -->
+   <div class="chat-voz">
+    <button type="button" id="dictar-consulta" aria-pressed="false" aria-controls="chat-texto" aria-describedby="voz-privacidad voz-estado">🎙 Dictar</button>
+    <p id="voz-estado" role="status">Pulsa Dictar para escribir con tu voz. Revisa el texto antes de enviarlo.</p>
+    <p id="voz-privacidad">Solo se activa al pulsar Dictar y permitir el micrófono. El navegador puede enviar el audio a su servicio de reconocimiento. Esta web no guarda grabaciones.</p>
+   </div>
    <form class="chat-form" id="chat-form">
     <label class="salto" for="chat-texto">
      Escribe tu mensaje
@@ -1344,7 +1349,7 @@ html[data-theme="dark"] .salto:focus{background:#192a25;color:white}
     </button>
    </form>
    <p class="chat-nota">
-    Chat simulado: no conecta con el hotel ni envía información a Internet.
+    Chat simulado: no conecta con el hotel. Las respuestas se generan en esta página; el dictado puede usar un servicio externo.
    </p>
   </aside>
   <!-- Aviso inicial accesible: se abre como ventana modal con JavaScript. -->
@@ -1880,5 +1885,5 @@ document.documentElement.dataset.theme=temaSelect.value;aplicarVolumen();traduci
   </script>
  <nav class="app-nav" aria-label="Navegación de la web-app">
 <a href="#inicio">Inicio</a><a href="#servicios">Explorar</a><a href="#reservas">Planificar</a><a href="#mi-agenda">Mi agenda</a><a href="#ubicacion">Mapa</a>
-</nav><script src="app.js"></script></body>
+</nav><script src="app.js"></script><script src="voz.js"></script></body>
 </html>

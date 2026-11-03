@@ -21,3 +21,15 @@ html[data-theme="dark"] .reserva-aside{color:#edf2e9}
 .chat-mensajes{min-height:0}.chat-cabecera,.chat-form,.chat-nota{flex-shrink:0}
 @media(max-height:500px){.chat-panel{top:8px;bottom:78px;height:auto;z-index:50}.chat-cabecera{padding:8px 14px}.chat-nota{padding-bottom:6px}.ajustes-panel{position:fixed;top:85px;bottom:78px;right:16px;max-height:none}}
 
+
+/* Dictado opcional: se mantiene la escritura manual en todos los navegadores. */
+.chat-voz{flex-shrink:0;padding:8px 14px;background:var(--papel);border-top:1px solid var(--linea);max-height:38%;overflow:auto}
+.chat-voz button{min-height:44px;padding:7px 12px;font-size:13px}.chat-voz button[aria-pressed="true"]{background:#8b3029;color:white;border-color:#8b3029}
+.chat-voz button:disabled{cursor:default;opacity:.65}.chat-voz p{font-size:11px;line-height:1.4;margin:5px 0 0}.chat-voz #voz-privacidad{font-size:10px;color:#57645e}
+html[data-theme="dark"] .chat-voz #voz-privacidad{color:#c1cec5}
+.chat-panel{height:min(640px,calc(100dvh - 185px))}
+@media(max-width:600px){.chat-panel{height:min(640px,calc(100dvh - 170px))}}
+@media(max-height:500px){.chat-panel{height:auto}.chat-voz{max-height:32%;padding:5px 12px}.chat-voz button{padding:3px 10px}.chat-cabecera small{display:none}}
+
+@media(max-height:500px){.chat-panel{width:min(700px,calc(100vw - 32px))}.chat-voz{display:grid;grid-template-columns:auto 1fr;column-gap:12px;max-height:38%}.chat-voz button{grid-row:span 2;align-self:start}.chat-voz p{margin:2px 0}}
+
